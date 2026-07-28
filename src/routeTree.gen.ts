@@ -11,9 +11,17 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as AboutIndexRouteImport } from './routes/about/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as DashboardAboutRouteImport } from './routes/dashboard/about'
+import { Route as DashboardCompetitionsRouteImport } from './routes/dashboard/competitions'
+import { Route as DashboardMatchesRouteImport } from './routes/dashboard/matches'
+import { Route as DashboardNewsRouteImport } from './routes/dashboard/news'
+import { Route as DashboardPlayersRouteImport } from './routes/dashboard/players'
+import { Route as DashboardPredictionsRouteImport } from './routes/dashboard/predictions'
+import { Route as DashboardTeamsRouteImport } from './routes/dashboard/teams'
 import { Route as DemoBetterAuthRouteImport } from './routes/demo/better-auth'
 import { Route as DemoDbChatRouteImport } from './routes/demo/db-chat'
 import { Route as DemoDbChatApiRouteImport } from './routes/demo/db-chat-api'
@@ -38,6 +46,11 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const McpRoute = McpRouteImport.update({
   id: '/mcp',
   path: '/mcp',
@@ -49,9 +62,44 @@ const AboutIndexRoute = AboutIndexRouteImport.update({
   getParentRoute: () => AboutRoute,
 } as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
-  id: '/dashboard/',
-  path: '/dashboard/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAboutRoute = DashboardAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardCompetitionsRoute = DashboardCompetitionsRouteImport.update({
+  id: '/competitions',
+  path: '/competitions',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardMatchesRoute = DashboardMatchesRouteImport.update({
+  id: '/matches',
+  path: '/matches',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardNewsRoute = DashboardNewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardPlayersRoute = DashboardPlayersRouteImport.update({
+  id: '/players',
+  path: '/players',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardPredictionsRoute = DashboardPredictionsRouteImport.update({
+  id: '/predictions',
+  path: '/predictions',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardTeamsRoute = DashboardTeamsRouteImport.update({
+  id: '/teams',
+  path: '/teams',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const DemoBetterAuthRoute = DemoBetterAuthRouteImport.update({
   id: '/demo/better-auth',
@@ -122,7 +170,15 @@ const DemoFormSimpleRoute = DemoFormSimpleRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRouteWithChildren
+  '/dashboard': typeof DashboardRouteWithChildren
   '/mcp': typeof McpRoute
+  '/dashboard/about': typeof DashboardAboutRoute
+  '/dashboard/competitions': typeof DashboardCompetitionsRoute
+  '/dashboard/matches': typeof DashboardMatchesRoute
+  '/dashboard/news': typeof DashboardNewsRoute
+  '/dashboard/players': typeof DashboardPlayersRoute
+  '/dashboard/predictions': typeof DashboardPredictionsRoute
+  '/dashboard/teams': typeof DashboardTeamsRoute
   '/demo/better-auth': typeof DemoBetterAuthRoute
   '/demo/db-chat': typeof DemoDbChatRoute
   '/demo/db-chat-api': typeof DemoDbChatApiRoute
@@ -142,6 +198,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/mcp': typeof McpRoute
+  '/dashboard/about': typeof DashboardAboutRoute
+  '/dashboard/competitions': typeof DashboardCompetitionsRoute
+  '/dashboard/matches': typeof DashboardMatchesRoute
+  '/dashboard/news': typeof DashboardNewsRoute
+  '/dashboard/players': typeof DashboardPlayersRoute
+  '/dashboard/predictions': typeof DashboardPredictionsRoute
+  '/dashboard/teams': typeof DashboardTeamsRoute
   '/demo/better-auth': typeof DemoBetterAuthRoute
   '/demo/db-chat': typeof DemoDbChatRoute
   '/demo/db-chat-api': typeof DemoDbChatApiRoute
@@ -162,7 +225,15 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRouteWithChildren
+  '/dashboard': typeof DashboardRouteWithChildren
   '/mcp': typeof McpRoute
+  '/dashboard/about': typeof DashboardAboutRoute
+  '/dashboard/competitions': typeof DashboardCompetitionsRoute
+  '/dashboard/matches': typeof DashboardMatchesRoute
+  '/dashboard/news': typeof DashboardNewsRoute
+  '/dashboard/players': typeof DashboardPlayersRoute
+  '/dashboard/predictions': typeof DashboardPredictionsRoute
+  '/dashboard/teams': typeof DashboardTeamsRoute
   '/demo/better-auth': typeof DemoBetterAuthRoute
   '/demo/db-chat': typeof DemoDbChatRoute
   '/demo/db-chat-api': typeof DemoDbChatApiRoute
@@ -184,7 +255,15 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/dashboard'
     | '/mcp'
+    | '/dashboard/about'
+    | '/dashboard/competitions'
+    | '/dashboard/matches'
+    | '/dashboard/news'
+    | '/dashboard/players'
+    | '/dashboard/predictions'
+    | '/dashboard/teams'
     | '/demo/better-auth'
     | '/demo/db-chat'
     | '/demo/db-chat-api'
@@ -204,6 +283,13 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/mcp'
+    | '/dashboard/about'
+    | '/dashboard/competitions'
+    | '/dashboard/matches'
+    | '/dashboard/news'
+    | '/dashboard/players'
+    | '/dashboard/predictions'
+    | '/dashboard/teams'
     | '/demo/better-auth'
     | '/demo/db-chat'
     | '/demo/db-chat-api'
@@ -223,7 +309,15 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/dashboard'
     | '/mcp'
+    | '/dashboard/about'
+    | '/dashboard/competitions'
+    | '/dashboard/matches'
+    | '/dashboard/news'
+    | '/dashboard/players'
+    | '/dashboard/predictions'
+    | '/dashboard/teams'
     | '/demo/better-auth'
     | '/demo/db-chat'
     | '/demo/db-chat-api'
@@ -244,6 +338,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRouteWithChildren
+  DashboardRoute: typeof DashboardRouteWithChildren
   McpRoute: typeof McpRoute
   DemoBetterAuthRoute: typeof DemoBetterAuthRoute
   DemoDbChatRoute: typeof DemoDbChatRoute
@@ -252,7 +347,6 @@ export interface RootRouteChildren {
   DemoMcpTodosRoute: typeof DemoMcpTodosRoute
   DemoStoreRoute: typeof DemoStoreRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
-  DashboardIndexRoute: typeof DashboardIndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
   SignupIndexRoute: typeof SignupIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -277,6 +371,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mcp': {
       id: '/mcp'
       path: '/mcp'
@@ -293,10 +394,59 @@ declare module '@tanstack/react-router' {
     }
     '/dashboard/': {
       id: '/dashboard/'
-      path: '/dashboard'
+      path: '/'
       fullPath: '/dashboard/'
       preLoaderRoute: typeof DashboardIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/about': {
+      id: '/dashboard/about'
+      path: '/about'
+      fullPath: '/dashboard/about'
+      preLoaderRoute: typeof DashboardAboutRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/competitions': {
+      id: '/dashboard/competitions'
+      path: '/competitions'
+      fullPath: '/dashboard/competitions'
+      preLoaderRoute: typeof DashboardCompetitionsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/matches': {
+      id: '/dashboard/matches'
+      path: '/matches'
+      fullPath: '/dashboard/matches'
+      preLoaderRoute: typeof DashboardMatchesRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/news': {
+      id: '/dashboard/news'
+      path: '/news'
+      fullPath: '/dashboard/news'
+      preLoaderRoute: typeof DashboardNewsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/players': {
+      id: '/dashboard/players'
+      path: '/players'
+      fullPath: '/dashboard/players'
+      preLoaderRoute: typeof DashboardPlayersRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/predictions': {
+      id: '/dashboard/predictions'
+      path: '/predictions'
+      fullPath: '/dashboard/predictions'
+      preLoaderRoute: typeof DashboardPredictionsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/teams': {
+      id: '/dashboard/teams'
+      path: '/teams'
+      fullPath: '/dashboard/teams'
+      preLoaderRoute: typeof DashboardTeamsRouteImport
+      parentRoute: typeof DashboardRoute
     }
     '/demo/better-auth': {
       id: '/demo/better-auth'
@@ -402,9 +552,36 @@ const AboutRouteChildren: AboutRouteChildren = {
 
 const AboutRouteWithChildren = AboutRoute._addFileChildren(AboutRouteChildren)
 
+interface DashboardRouteChildren {
+  DashboardAboutRoute: typeof DashboardAboutRoute
+  DashboardCompetitionsRoute: typeof DashboardCompetitionsRoute
+  DashboardMatchesRoute: typeof DashboardMatchesRoute
+  DashboardNewsRoute: typeof DashboardNewsRoute
+  DashboardPlayersRoute: typeof DashboardPlayersRoute
+  DashboardPredictionsRoute: typeof DashboardPredictionsRoute
+  DashboardTeamsRoute: typeof DashboardTeamsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardAboutRoute: DashboardAboutRoute,
+  DashboardCompetitionsRoute: DashboardCompetitionsRoute,
+  DashboardMatchesRoute: DashboardMatchesRoute,
+  DashboardNewsRoute: DashboardNewsRoute,
+  DashboardPlayersRoute: DashboardPlayersRoute,
+  DashboardPredictionsRoute: DashboardPredictionsRoute,
+  DashboardTeamsRoute: DashboardTeamsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRouteWithChildren,
+  DashboardRoute: DashboardRouteWithChildren,
   McpRoute: McpRoute,
   DemoBetterAuthRoute: DemoBetterAuthRoute,
   DemoDbChatRoute: DemoDbChatRoute,
@@ -413,7 +590,6 @@ const rootRouteChildren: RootRouteChildren = {
   DemoMcpTodosRoute: DemoMcpTodosRoute,
   DemoStoreRoute: DemoStoreRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
-  DashboardIndexRoute: DashboardIndexRoute,
   LoginIndexRoute: LoginIndexRoute,
   SignupIndexRoute: SignupIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,

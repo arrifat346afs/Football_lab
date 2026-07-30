@@ -8,9 +8,10 @@ import { useState } from "react"
 
 interface LoginFormProps {
   onSubmit: (data: { email: string; password: string }) => Promise<void>
+  onGoogleSignIn?: () => Promise<void>
 }
 
-export default function LogIn({ onSubmit }: LoginFormProps) {
+export default function LogIn({ onSubmit, onGoogleSignIn }: LoginFormProps) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -104,7 +105,9 @@ export default function LogIn({ onSubmit }: LoginFormProps) {
           <div className="grid grid-cols-2 gap-3">
             <Button
               type="button"
-              variant="outline">
+              variant="outline"
+              onClick={onGoogleSignIn}
+              disabled={!onGoogleSignIn || loading}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="0.98em"

@@ -31,14 +31,14 @@ export default function ContentSection() {
           </div>
           <div className="md:mask-l-from-35% md:mask-l-to-55% mt-12 h-fit md:absolute md:-inset-y-12 md:inset-x-0 md:mt-0">
             <div className="border-border/50 relative rounded-2xl border border-dotted p-2">
-              <image
+              <img
                 // src="/charts.png"
                 className="hidden rounded-lg dark:block"
                 // alt="payments illustration dark"
                 width={1207}
                 height={929}
               />
-              <image
+              <img
                 // src="/charts-light.png"
                 className="rounded-lg shadow dark:hidden"
                 // alt="payments illustration light"

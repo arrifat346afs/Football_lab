@@ -7,9 +7,10 @@ import { useState } from 'react'
 
 interface SignUpFormProps {
   onSubmit: (data: { name: string; email: string; password: string }) => Promise<void>
+  onGoogleSignIn?: () => Promise<void>
 }
 
-export default function SignUp({ onSubmit }: SignUpFormProps) {
+export default function SignUp({ onSubmit, onGoogleSignIn }: SignUpFormProps) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -43,7 +44,9 @@ export default function SignUp({ onSubmit }: SignUpFormProps) {
           <div className="mt-6 grid grid-cols-2 gap-3">
             <Button
               type="button"
-              variant="outline">
+              variant="outline"
+              onClick={onGoogleSignIn}
+              disabled={!onGoogleSignIn || loading}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="0.98em"

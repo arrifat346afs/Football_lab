@@ -19,5 +19,10 @@ function RouteComponent() {
     }
 
   }
-  return <LogIn onSubmit={handleLogin} />
+
+  const handleGoogleSignIn = async () => {
+    await authClient.signIn.social({ provider: 'google', callbackURL: '/dashboard' })
+  }
+
+  return <LogIn onSubmit={handleLogin} onGoogleSignIn={handleGoogleSignIn} />
 }
